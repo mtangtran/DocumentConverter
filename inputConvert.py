@@ -16,15 +16,24 @@ class inputConvert:
         self.pdf.add_page()
         self.line_counter = 0
 
-    def setFileFont(self, fontType, fontSize):
+    def setFileFont(self, fontType, fontSize, fontStyle):
         """
         Set the font.
         :param fontType: String
         :param fontSize: integer
         :return:
         """
-        # Set the font size and type.
-        self.pdf.set_font(fontType, size=fontSize)
+
+        if fontStyle is None or fontStyle == "":
+            # Set the font size and type.
+            self.pdf.set_font(fontType, size=fontSize)
+        elif fontStyle == "B":
+            # set the font style and size
+            self.pdf.set_font(fontType, size=fontSize)
+
+            # establish a bold style. 
+            self.pdf.set_font(fontType, fontStyle)
+
 
     def addLine(self, text, alignment):
         """
@@ -44,7 +53,7 @@ class inputConvert:
         """
         for x in txtfile:
             self.pdf.cell(200, 10, txt=x, ln = 1, align="C")
-            
+
     def getPDF(self, filename):
         """
         Inputs a string filename
