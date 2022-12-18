@@ -1,6 +1,8 @@
 import filecmp
 import os
-
+"""
+This file will provide file quality checks with itself and comparison. 
+"""
 
 def file_comparison(file1, file2):
     """
